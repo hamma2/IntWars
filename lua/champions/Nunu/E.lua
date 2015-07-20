@@ -23,7 +23,7 @@ function applyEffects()
 		owner:dealDamageTo( castTarget, damage, DAMAGE_TYPE_MAGICAL, DAMAGE_SOURCE_SPELL );
 			
 		local amt = getEffectValue(1)/100
-		local buff = Buff.new("IceBlast", 2.5, BUFFTYPE_TEMPORARY, castTarget)
+		local buff = Buff.new("IceBlast", 2.5, BUFFTYPE_TEMPORARY, castTarget, owner)
 		buff:setMovementSpeedPercentModifier(-speedIncrease)
 		addBuff(buff, castTarget)
 	end
