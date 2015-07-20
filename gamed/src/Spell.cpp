@@ -132,6 +132,10 @@ std::string Spell::getStringForSlot(){
             return "E";
         case 3:
             return "R";
+		case 4:
+			return "D";
+		case 5:
+			return "F";
     }
     
     return "undefined";
@@ -141,8 +145,13 @@ std::string Spell::getStringForSlot(){
 
 
 void Spell::loadLua(LuaScript& script){
-
-   std::string scriptloc = "../../lua/champions/" + owner->getType() + "/" + getStringForSlot() + ".lua"; //lua/championname/(q/w/e/r), example: /lua/Ezreal/q, also for stuff like nidalee cougar they will have diff folders!
+   std::string scriptloc;
+   
+   if (getSlot() > 3) {
+      scriptloc = "../../lua/summonerSpells/" + spellName + ".lua";
+   } else {
+      scriptloc = "../../lua/champions/" + owner->getType() + "/" + getStringForSlot() + ".lua"; //lua/championname/(q/w/e/r), example: /lua/Ezreal/q, also for stuff like nidalee cougar they will have diff folders!
+   }
 
    CORE_INFO("Spell script loc is: %s" , scriptloc.c_str());
    
