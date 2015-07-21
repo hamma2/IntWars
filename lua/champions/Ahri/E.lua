@@ -6,12 +6,11 @@ function finishCasting()
     local range = to * 975
     local trueCoords = current + range
     addProjectile(trueCoords.x, trueCoords.y)
-	print("CACA")
 end
 
 function applyEffects()
     dealMagicalDamage(25+35*getSpellLevel()+getOwner():getStats():getTotalAp()*0.5)
-	local buff = Buff.new("", 1.0+0.25*getSpellLevel(), BUFFTYPE_TEMPORARY, getOwner())
+    local buff = Buff.new("AhriSeduce", 0.75+getSpellLevel()*0.25, BUFFTYPE_TEMPORARY, getTarget(), getOwner())
     buff:setMovementSpeedPercentModifier(-50)
     addBuff(buff, getTarget())
     destroyProjectile()
