@@ -251,17 +251,17 @@ Vector2 AIMesh::getClosestTerrainExit(Object* a, Vector2 location, bool noForwar
    Vector2 dir = (location - a->getPosition());
    if (isWalkable(location.X, location.Y))
       return location;
-
+  
    float distBackwards = castInfiniteRay(location, -dir, true); // Find the first opening firing backwards
    float dist = -distBackwards;
-
    if (!noForward)
    {
       float distForward = castInfiniteRay(location, dir, true); // Fire forward
       dist = (distBackwards < distForward) ? (-distBackwards) : (distForward);
    }
 
-   return a->getPosition() + (dir.Normalize()*dist);
+   //return a->getPosition() + (dir.Normalize()*dist);
+   return location + (dir.Normalize()*dist);
 }
 
 

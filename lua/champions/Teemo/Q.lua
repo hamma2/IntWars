@@ -20,6 +20,8 @@ function applyEffects()
 		local damage = getEffectValue(0) + owner:getStats():getTotalAp()*0.8
 
 		owner:dealDamageTo( castTarget, damage, DAMAGE_TYPE_MAGICAL, DAMAGE_SOURCE_SPELL );
+		local buff = Buff.new("Blind", 1.25+getSpellLevel()*0.25, BUFFTYPE_TEMPORARY, castTarget, owner)
+		addBuff(buff, castTarget)
 	end
 
     destroyProjectile()

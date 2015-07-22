@@ -4,20 +4,18 @@ function finishCasting()
     local current = Vector2:new(getOwnerX(), getOwnerY())
     local to = Vector2:new(getSpellToX(), getSpellToY()) - current
     local trueCoords
-
+	
     if to:length() > 425 then
         to = to:normalize()
         local range = to * 425
         trueCoords = current:copy() + range
-    elseif(to:length() >= 212.5 and isWalkable(getSpellToX(), getSpellToY()) == false) then
-        -- Apply position fix when requested teleport distance is more than half
-        to = to:normalize()
-        local range = to * 475
-        trueCoords = current:copy() + range
     else
         trueCoords = Vector2:new(getSpellToX(), getSpellToY())
     end
+	addParticle("global_ss_flash.troy", getOwnerX(), getOwnerY())
+	trueCoords.x, trueCoords.y = getClosestTerrainExit(getOwner(), trueCoords.x, trueCoords.y, false)
     teleportTo(trueCoords.x, trueCoords.y)
+	addParticleTarget("global_ss_flash_02.troy", getOwner())
 end
 
 function applyEffects()

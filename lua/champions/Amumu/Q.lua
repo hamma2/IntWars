@@ -6,7 +6,7 @@ function finishCasting()
     local range = to * 300
     local trueCoords = current + range
 
-    addProjectile(trueCoords.x, trueCoords.y)
+    addProjectileCustom("Bandage_beam.troy", 2000, trueCoords.x, trueCoords.y)
 end
 
 function applyEffects()
