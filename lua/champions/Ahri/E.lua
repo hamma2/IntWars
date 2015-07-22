@@ -9,8 +9,8 @@ function finishCasting()
 end
 
 function applyEffects()
-    dealMagicalDamage(25+35+getOwner():getStats():getTotalAp()*0.5)
-	local buff = Buff.new("AhriSeduce", 0.75+getSpellLevel()*0.25, BUFFTYPE_TEMPORARY, getTarget(), getOwner())
+    dealMagicalDamage(25+35*getSpellLevel()+getOwner():getStats():getTotalAp()*0.5)
+    local buff = Buff.new("AhriSeduce", 0.75+getSpellLevel()*0.25, BUFFTYPE_TEMPORARY, getTarget(), getOwner())
     buff:setMovementSpeedPercentModifier(-50)
     addBuff(buff, getTarget())
     destroyProjectile()
